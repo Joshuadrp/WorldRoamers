@@ -9,6 +9,10 @@ class PostAdmin(SummernoteModelAdmin):
     list_filter = ('created_on', 'updated_on',)
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('content',)
+@admin.register(Comment)
+class CommentAdmin(SummernoteModelAdmin):
+    list_display = ('content', 'post',)
+    summernote_fields = ('content',)
 
-# Register your models here.
-admin.site.register(Comment)
+
+
