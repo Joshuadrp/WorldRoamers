@@ -11,12 +11,27 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(
-    User, on_delete=models.CASCADE)
-    location_id = models.ForeignKey(
-        Location, on_delete=models.CASCADE
+    User, on_delete=models.CASCADE,related_name='posts')
+    location = models.ForeignKey(
+        Location, on_delete=models.CASCADE,related_name='posts',null=True, blank=True
     )
 
     class Meta:
         ordering = ["created_on"]
     def __str__(self):
         return f"{self.title} | written by {self.author}"
+
+class Comment(models.Model):
+    content = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+    author = models.ForeignKey(
+    User, on_delete=models.CASCADE, related_name='comments',null=True, blank=True)
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name='comments',null=True, blank=True
+    )
+
+    class Meta:
+        ordering = ["created_on"]
+    def __str__(self):
+        return f"written by {self.author}"
