@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Posts</title>
-</head>
+{% block content %}
 
-<body>
+<div class="image-flash">
     <h1>Lets see some posts!</h1>
     {% for post in object_list %}
-    <h2>{{post.title}}</h2>
+    <h4>{{post.title}}</h4>
     <p>{{post.content}}</p>
     <p>{{post.created_on}}</p>
     {% endfor %}
-</body>
-
-</html>
+</div>
+    
+{% endblock %}
