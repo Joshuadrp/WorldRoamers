@@ -3,11 +3,8 @@
 {% block content %}
 
 <div class="image-flash">
-    <h1>Lets see some posts!</h1>
     {% for post in object_list %}
-    <h4>{{post.title}}</h4>
-    <p>{{post.content}}</p>
-    <p>{{post.created_on}}</p>
+    <h4><a href="{% url 'post_detail' post.slug %}" class="post-link">{{post.title}}</a></h4>
     {% endfor %}
 </div>
     

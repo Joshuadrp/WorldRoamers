@@ -9,3 +9,6 @@ class Locations(generic.ListView):
 
 class About(generic.TemplateView):
     template_name = "core/about.html"
+
+class Register(generic.TemplateView):
+    template_name = "core/register.html"
