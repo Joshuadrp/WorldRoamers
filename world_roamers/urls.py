@@ -16,11 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# from core import views as core_views
-from blog import views as blog_views
 
 urlpatterns = [
-    path('', include('core.urls'), name='core-urls'),
+    path('', include('core.urls'), name='core-urls'),  #we only need one path per application?
     path('blog/', include('blog.urls'), name = 'blog-urls'),
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),

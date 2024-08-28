@@ -6,3 +6,6 @@ from .models import Location
 class Locations(generic.ListView):
     queryset = Location.objects.all() #makes easier to get data.
     template_name = "core/home.html"
+
+class About(generic.TemplateView):
+    template_name = "core/about.html"
