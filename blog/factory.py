@@ -28,7 +28,7 @@ class PostFactory(factory.django.DjangoModelFactory):
 
     title = factory.Faker('sentence', nb_words=6)
     slug = factory.Faker('slug')
-    content = factory.Faker('paragraph', nb_sentences=10)
+    content = factory.Faker('paragraph', nb_sentences=30)
     author = factory.SubFactory(UserFactory)
     img_url = factory.Faker('image_url')
     location = factory.SubFactory(LocationFactory)
