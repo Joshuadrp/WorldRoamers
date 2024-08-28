@@ -1,15 +1,14 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} 
+{% block content %}
 
-<div class="image-flash">
+<div id="posts-container" class="image-flash row row-cols-1">
   {% for post in object_list %}
+  <a href="{% url 'post_detail' post.slug %}">{{ post.img_url }}</a>
   <h4>
-    <a href="{% url 'post_detail' post.slug %}" class="post-link"
-      >{{post.title}}</a
-    >
+    <a href="{% url 'post_detail' post.slug %}" class="post-link">{{ post.title }}</a> 
   </h4>
   {% empty %}
   <p>No posts available for this location.</p>
-  {% endfor %} 
+  {% endfor %}
 </div>
-
 {% endblock %}

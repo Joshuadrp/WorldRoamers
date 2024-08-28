@@ -7,7 +7,6 @@ from core.models import Location
 class Posts(generic.ListView):
     queryset = Post.objects.all()
     template_name = "blog/posts.html"
-
 class PostsByLocation(generic.ListView):
     template_name = "blog/posts.html"
     context_object_name = 'posts'
@@ -33,11 +32,14 @@ def post_detail(request, slug):
 
     queryset = Post.objects.filter()
     post = get_object_or_404(queryset, slug=slug)
+    comments = post.comments.all().order_by("-created_on")
+
 
     return render(
         request,
         "blog/post_detail.html",
-        {"post": post},
+        {"post": post,
+        "comments": comments,},
     )
 
 
