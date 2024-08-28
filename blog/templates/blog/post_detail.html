@@ -49,6 +49,8 @@
                         {{ comment.content | linebreaks }}
                     </div>
                 </div>
+                {% empty %}
+                <h4>No comments here yet! You want to be the first one?!</h4>
                 <!-- Our for loop ends here -->
                 {% endfor %}
             </div>
