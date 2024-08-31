@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views import generic
 from .models import Location
+from django.contrib.auth.forms import UserCreationForm
+
 
 # Create your views here.
 class Locations(generic.ListView):
@@ -10,5 +12,6 @@ class Locations(generic.ListView):
 class About(generic.TemplateView):
     template_name = "core/about.html"
 
-class Register(generic.TemplateView):
-    template_name = "core/register.html"
+def register_view(request):
+    
+    return render(request, 'core/register.html')
