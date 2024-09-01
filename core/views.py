@@ -11,7 +11,3 @@ class Locations(generic.ListView):
 
 class About(generic.TemplateView):
     template_name = "core/about.html"
-
-def register_view(request):
-    
-    return render(request, 'core/register.html')
