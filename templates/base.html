@@ -57,6 +57,10 @@
                         <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
                             href="{% url 'home' %}">Profile</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
+                            href="{% url 'message' %}">Messages</a>
+                    </li>
                     <p class='navbar-text text-muted'>You are logged in as {{ user.username }}</p>
                     {% else %}
                     <li class="nav-item">
