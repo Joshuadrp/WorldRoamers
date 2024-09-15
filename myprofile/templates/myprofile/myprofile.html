@@ -9,7 +9,12 @@
         <!-- Blog Entries Column -->
         <div class="col-12 mt-3 left">
             <div class="row">
-                <h1>Here we will have the users profile!!! TESTING AGAIN!!!</h1>
+
+                {% if user.myprofile.bio %}
+                <h1>{{ user.myprofile.bio }}</h1>
+                {% else %}
+                <h1>There is no bio for this user!!!!</h1>
+                {% endif %}
             </div>
         </div>
     </div>
