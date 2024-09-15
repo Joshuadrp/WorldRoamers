@@ -22,8 +22,11 @@
                         </div>
                         <h1>{{user.myprofile.interests}}</h1>
                         <div class="text-center">
-                            <button type="button" class="btn btn-primary" style="width: 200px;">Edit Profile</button>
+                            <a href="{% url 'edit_profile' %}">
+                                <button type="button" class="btn btn-primary" style="width: 200px;">Edit Profile</button>
+                            </a>
                         </div>
+                        
                     </div>
                     {% else %}
                     <h1 class="text-center">This user has no profile, but you can create one. Just click this button!!</h1>
