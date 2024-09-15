@@ -14,14 +14,22 @@
                 {% if user.is_authenticated%}
 
                     {% if user.myprofile.name %}
-                    <h1>{{ user.myprofile.bio }}</h1>
-                    <h1>{{ user.myprofile.name }} {{ user.myprofile.surname }}</h1>
-                    <div class="d-none d-md-block col-md-6 masthead-image">
-                        <img src="{% static 'images/test.jpeg' %}" class="scale" alt="placeholder">
+                    <div class="text-center">   
+                        <h1>{{ user.myprofile.bio }}</h1>
+                        <h1>{{ user.myprofile.name }} {{ user.myprofile.surname }}</h1>
+                        <div>
+                            <img src="{% static 'images/test.jpeg' %}" class="scale" alt="placeholder">
+                        </div>
+                        <h1>{{user.myprofile.interests}}</h1>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary" style="width: 200px;">Edit Profile</button>
+                        </div>
                     </div>
-                    <h1>{{user.myprofile.interests}}</h1>
                     {% else %}
-                    <h1>This user has no profile.</h1>
+                    <h1 class="text-center">This user has no profile, but you can create one. Just click this button!!</h1>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary" style="width: 200px;">Create Profile</button>
+                    </div>
                     {% endif %}
 
                 {% endif %}
