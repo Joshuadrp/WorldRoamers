@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'core',
     'blog',
     'message',
+    'myprofile',
 ]
 
 SITE_ID = 1

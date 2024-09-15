@@ -12,6 +12,3 @@ class Locations(generic.ListView):
 class About(generic.TemplateView):
     template_name = "core/about.html"
 
-    
-class Profile(generic.TemplateView):
-    template_name = "core/profile.html"

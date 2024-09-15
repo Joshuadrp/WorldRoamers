@@ -20,7 +20,8 @@ from django.urls import path, include
 urlpatterns = [
     path('', include('core.urls'), name='core-urls'),  #we only need one path per application?
     path('blog/', include('blog.urls'), name = 'blog-urls'),
-     path('message/', include('message.urls'), name = 'message-urls'),
+    path('message/', include('message.urls'), name = 'message-urls'),
+    path('profile/', include('myprofile.urls'), name = 'profile-urls'),
     path("accounts/", include("allauth.urls")),
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
