@@ -19,4 +19,19 @@ def edit_profile(request):
     
     return render(request, 'myprofile/edit_profile.html', {'form': form})
 
+def create_profile(request):
+
+    profile = MyProfile.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = ProfileForm(instance=profile)
+    
+    return render(request, 'myprofile/create_profile.html', {'form': form})
+        
+
     
