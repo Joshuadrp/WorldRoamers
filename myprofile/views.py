@@ -32,6 +32,18 @@ def create_profile(request):
         form = ProfileForm(instance=profile)
     
     return render(request, 'myprofile/create_profile.html', {'form': form})
-        
 
+
+def delete_profile(request):
+    profile = MyProfile.objects.get(user=request.user)
+
+    if request.method == 'POST':
+        profile.delete()
+        return redirect('home')
+    else:
+        return render(request, 'myprofile/delete_profile.html', {'profile': profile})
+
+
+
+        
     

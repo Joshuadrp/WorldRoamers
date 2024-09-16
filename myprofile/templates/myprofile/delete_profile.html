@@ -3,11 +3,11 @@
 
 {% block content %}
 <div class="container-fluid">
+    <h1>We are sorry to see you go... but good luck!</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Save changes</button>
+        <button class="btn btn-danger" type="submit">Delete profile</button>
     </form>
-    <a class="btn btn-danger" href="{% url 'delete_profile' %}">Delete Profile</a>
 </div>
 {% endblock %}
