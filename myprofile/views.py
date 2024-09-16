@@ -19,17 +19,33 @@ def edit_profile(request):
     
     return render(request, 'myprofile/edit_profile.html', {'form': form})
 
+# def create_profile(request):
+
+#     profile = MyProfile.objects.get_or_create(user=request.user)
+
+#     if request.method == 'POST':
+#         form = ProfileForm(request.POST, instance=profile)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('profile')
+#     else:
+#         form = ProfileForm(instance=profile)
+    
+#     return render(request, 'myprofile/create_profile.html', {'form': form})
+
 def create_profile(request):
-
-    profile = MyProfile.objects.get_or_create(user=request.user)
-
+    # Try to get the profile for the current user or set it to None if it doesn't exist
+    profile = MyProfile.objects.filter(user=request.user).first()  # Use filter to avoid errors
+    
     if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=profile)
+        form = ProfileForm(request.POST, instance=profile)  # Pass instance only if profile exists
         if form.is_valid():
-            form.save()
-            return redirect('profile')
+            form_instance = form.save(commit=False)
+            form_instance.user = request.user  
+            form_instance.save()  
+            return redirect('profile')  
     else:
-        form = ProfileForm(instance=profile)
+        form = ProfileForm(instance=profile)  
     
     return render(request, 'myprofile/create_profile.html', {'form': form})
 
