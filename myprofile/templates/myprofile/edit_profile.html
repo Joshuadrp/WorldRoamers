@@ -2,19 +2,11 @@
 {% load static %}
 
 {% block content %}
-
-<!-- index.html content starts here -->
 <div class="container-fluid">
-    <div class="row">
-
-        <!-- Blog Entries Column -->
-        <div class="col-12 mt-3 left">
-            <div class="row">
-                <h1>IS THE EDIT FINALLY OPEN?</h1>
-            </div>
-        </div>
-    </div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save changes</button>
+    </form>
 </div>
-
-<!-- index.html content ends here -->
 {% endblock %}
