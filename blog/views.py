@@ -18,7 +18,7 @@ class PostsByLocation(generic.ListView):
         location = get_object_or_404(Location, slug=location_slug)
         return Post.objects.filter(location=location)
   
-  
+
 def post_detail(request, slug):
     """
     Display an individual :model:`blog.Post` and handle comment submission.
@@ -46,18 +46,28 @@ def post_detail(request, slug):
 
 @login_required
 def edit_comment(request, comment_id):
-
     comment = get_object_or_404(Comment, id=comment_id, author=request.user)
 
     if request.method == 'POST':
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
             form.save()
-            return redirect("post_detail", slug=comment.post.slug)
+            return redirect('post_detail', slug=comment.post.slug)
     else:
         form = CommentForm(instance=comment)
     
-    return  render(request, 'blog/edit_comment.html', {'form': form})
+    return render(request, 'blog/edit_comment.html', {'form': form, 'comment': comment})
+
+
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id, author=request.user)
+
+    if request.method == 'POST':
+        comment.delete()
+        return redirect('post_detail', slug=comment.post.slug)
+    
+    return render(request, 'blog/delete_comment.html', {'comment': comment})
 
 
 

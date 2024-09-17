@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block content %}
 <div class="container">
     <h2>Edit Comment</h2>
@@ -6,6 +6,12 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Save changes</button>
+    </form>
+
+    <!-- Delete Form -->
+    <form method="post" action="{% url 'delete_comment' comment_id=comment.id %}" style="margin-top: 20px;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete Comment</button>
     </form>
 </div>
 {% endblock content %}
