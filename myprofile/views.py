@@ -10,7 +10,7 @@ class MyProfileListView(generic.ListView):
 def edit_profile(request):
     profile = MyProfile.objects.get(user=request.user)
     if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=profile)
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
             return redirect('profile')  # Redirect to the profile page after saving
@@ -19,26 +19,13 @@ def edit_profile(request):
     
     return render(request, 'myprofile/edit_profile.html', {'form': form})
 
-# def create_profile(request):
-
-#     profile = MyProfile.objects.get_or_create(user=request.user)
-
-#     if request.method == 'POST':
-#         form = ProfileForm(request.POST, instance=profile)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('profile')
-#     else:
-#         form = ProfileForm(instance=profile)
-    
-#     return render(request, 'myprofile/create_profile.html', {'form': form})
 
 def create_profile(request):
-    # Try to get the profile for the current user or set it to None if it doesn't exist
-    profile = MyProfile.objects.filter(user=request.user).first()  # Use filter to avoid errors
+    
+    profile = MyProfile.objects.filter(user=request.user).first()  
     
     if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=profile)  # Pass instance only if profile exists
+        form = ProfileForm(request.POST, request.FILES, instance=profile)  
         if form.is_valid():
             form_instance = form.save(commit=False)
             form_instance.user = request.user  
