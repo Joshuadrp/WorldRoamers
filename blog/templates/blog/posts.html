@@ -1,9 +1,19 @@
 {% extends "base.html" %} 
+{%  load static %}
+
 {% block content %}
 
 <div id="posts-container" class="image-flash row row-cols-1">
   {% for post in object_list %}
-  <a href="{% url 'post_detail' post.slug %}">{{ post.img_url }}</a>
+  <div>
+    {% if "placeholder" in post.blog_img.url %}
+    <img src="{% static 'images/test.jpeg' %}"
+      alt="placeholder image">
+    {% else %}
+    <img src="{{ post.blog_img.url }}"
+      alt="{{ post.title }}">
+    {% endif %}
+  </div>
   <h4>
     <a href="{% url 'post_detail' post.slug %}" class="post-link">{{ post.title }}</a> 
   </h4>

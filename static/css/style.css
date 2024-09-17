@@ -13,3 +13,7 @@
 .scale{
     width: 40%;
 }
+
+img {
+    max-width: 30%;
+}

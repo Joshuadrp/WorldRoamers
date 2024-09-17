@@ -1,13 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 from core.models import Location
+from cloudinary.models import CloudinaryField
+
 
 # Create your models here.
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     content = models.TextField()
-    blog_img = models.CharField(max_length=200, blank=True)
+    blog_img = CloudinaryField('image', default='placeholder')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(
