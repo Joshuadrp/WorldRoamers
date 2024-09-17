@@ -67,7 +67,7 @@ def delete_comment(request, comment_id):
         comment.delete()
         return redirect('post_detail', slug=comment.post.slug)
     
-    return render(request, 'blog/delete_comment.html', {'comment': comment})
+    return render(request, 'blog/edit_comment.html', {'form': CommentForm(instance=comment), 'comment': comment})
 
 
 
