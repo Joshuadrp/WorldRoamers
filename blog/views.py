@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.views import generic
 from .models import Post, Comment
 from core.models import Location
-from .forms import CommentForm
+from .forms import CommentForm, PostEditForm
 
 # Create your views here.
 class Posts(generic.ListView):
@@ -68,6 +68,20 @@ def delete_comment(request, comment_id):
         return redirect('post_detail', slug=comment.post.slug)
     
     return render(request, 'blog/edit_comment.html', {'form': CommentForm(instance=comment), 'comment': comment})
+
+@login_required
+def edit_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id, author=request.user)
+
+    if request.method == 'POST':
+        form = PostEditForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('post_detail', slug=post.slug)
+    else:
+        form = PostEditForm(instance=post)
+    
+    return render(request, 'blog/edit_post.html', {'form': form, 'post': post})
 
 
 
