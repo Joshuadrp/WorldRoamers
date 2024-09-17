@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.utils.text import slugify
 from django.views import generic
 from .models import Post, Comment
 from core.models import Location
-from .forms import CommentForm, PostEditForm
+from .forms import CommentForm, PostEditForm, CreatePostForm
 
 # Create your views here.
 class Posts(generic.ListView):
@@ -82,6 +83,22 @@ def edit_post(request, post_id):
         form = PostEditForm(instance=post)
     
     return render(request, 'blog/edit_post.html', {'form': form, 'post': post})
+
+@login_required
+def create_post(request):
+    if request.method == 'POST':
+        form = PostEditForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.slug = slugify(post.title)
+            post.save()  
+            return redirect('post_detail', slug=post.slug) 
+    else:
+        form = PostEditForm()
+
+    return render(request, 'blog/create_post.html', {'form': form})
+
 
 
 

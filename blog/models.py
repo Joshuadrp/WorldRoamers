@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from core.models import Location
 from cloudinary.models import CloudinaryField
+from django.utils.text import slugify
+
 
 
 # Create your models here.
@@ -20,8 +22,17 @@ class Post(models.Model):
 
     class Meta:
         ordering = ["created_on"]
+
     def __str__(self):
         return f"{self.title} | written by {self.author}"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+            # Ensure uniqueness
+            while Post.objects.filter(slug=self.slug).exists():
+                self.slug = f"{slugify(self.title)}-{Post.objects.filter(title=self.title).count() + 1}"
+        super().save(*args, **kwargs)
 
 class Comment(models.Model):
     content = models.TextField()

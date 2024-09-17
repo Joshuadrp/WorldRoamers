@@ -1,17 +1,17 @@
 {% extends "base.html" %} 
-{%  load static %}
+{% load static %}
 
 {% block content %}
 
 <div id="posts-container" class="image-flash row row-cols-1">
   {% for post in object_list %}
   <div>
-    {% if "placeholder" in post.blog_img.url %}
-    <img src="{% static 'images/test.jpeg' %}"
-      alt="placeholder image">
+    {% if post.blog_img %}
+      <!-- If an image is uploaded, display the Cloudinary image -->
+      <img src="{{ post.blog_img.url }}" class="scale" alt="{{ post.title }}">
     {% else %}
-    <img src="{{ post.blog_img.url }}"
-      alt="{{ post.title }}">
+      <!-- Display a default placeholder image if no image is uploaded -->
+      <img src="{% static 'images/test.jpeg' %}" class="scale" alt="Placeholder Image">
     {% endif %}
   </div>
   <h4>
@@ -21,4 +21,5 @@
   <p>No posts available for this location.</p>
   {% endfor %}
 </div>
+
 {% endblock %}

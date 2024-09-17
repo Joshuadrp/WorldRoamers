@@ -11,3 +11,9 @@ class PostEditForm(forms.ModelForm):
         model = Post
         fields = ['title', 'content', 'blog_img', 'location']
 
+class CreatePostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', 'slug', 'content', 'blog_img', 'location']
+
+
