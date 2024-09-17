@@ -11,17 +11,23 @@
         <div class="col-12 mt-3 left">
             <div class="row">
 
-                {% if user.is_authenticated%}
+                {% if user.is_authenticated %}
 
                     {% if user.myprofile.name %}
                     <div class="text-center">   
                         <h1>{{ user.myprofile.bio }}</h1>
                         <h1>{{ user.myprofile.name }} {{ user.myprofile.surname }}</h1>
-                        <div>
-                            <img src="{% static 'images/test.jpeg' %}" class="scale" alt="placeholder">
-                        </div>
-                        <h1>{{user.myprofile.interests}}</h1>
-                        <h1>{{user.myprofile.nationality}}</h1>
+
+                        {% if user.myprofile.profile_pic %}
+                        <!-- Display Cloudinary Image -->
+                        <img src="{{ user.myprofile.profile_pic.url }}" alt="{{ user.username }}">
+                        {% else %}
+                        <!-- Display Placeholder Image -->
+                        <img src="{% static 'images/test.jpeg' %}" alt="placeholder image">
+                        {% endif %}
+                        
+                        <h1>{{ user.myprofile.interests }}</h1>
+                        <h1>{{ user.myprofile.nationality }}</h1>
                         <div class="text-center">
                             <a href="{% url 'edit_profile' %}">
                                 <button type="button" class="btn btn-primary" style="width: 200px;">Edit Profile</button>
