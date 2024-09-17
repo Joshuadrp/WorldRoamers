@@ -37,8 +37,7 @@
             <div class="card-body">
                 <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
                 {% for comment in comments %}
-                <div
-                    class="p-2 comments{% if not comment.author == user %} {% endif %}">
+                <div class="p-2 comments{% if not comment.author == user %} {% endif %}">
                     <p class="font-weight-bold">
                         {{ comment.author }}
                         <span class="font-weight-normal">
@@ -48,6 +47,13 @@
                     <div id="comment{{ comment.id }}">
                         {{ comment.content | linebreaks }}
                     </div>
+                    {% if comment.author == user %}
+                    <div class="text-center">
+                        <a href="{% url 'edit_comment' comment_id=comment.id %}">
+                            <button type="button" class="btn btn-primary" style="width: 200px;">Edit</button>
+                        </a>
+                    </div>
+                    {% endif %}
                 </div>
                 {% empty %}
                 <h4>No comments here yet! You want to be the first one?!</h4>
@@ -55,6 +61,20 @@
                 {% endfor %}
             </div>
         </div>
+</div>
+
+<!-- Comment Form -->
+<div class="row">
+    <div class="col-md-8 card mb-4 mt-3">
+        <div class="card-body">
+            <h4>Leave a Comment:</h4>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Post Comment</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 {% endblock content %}
