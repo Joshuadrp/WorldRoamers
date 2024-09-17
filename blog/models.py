@@ -7,7 +7,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     content = models.TextField()
-    img_url = models.CharField(max_length=200, blank=True)
+    blog_img = models.CharField(max_length=200, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(

@@ -6,7 +6,7 @@ class MyProfile(models.Model):
     bio = models.TextField(max_length=500, blank=True)
     name = models.CharField(max_length=200, unique=True, blank=True)  
     surname = models.CharField(max_length=200, unique=True, blank=True)  
-    profile_picurl = models.CharField(max_length=200, blank=True)
+    profile_pic = models.CharField(max_length=200, blank=True)
     countries_visited = models.CharField(max_length=200, blank=True)  
     interests = models.CharField(max_length=200, blank=True) 
     nationality =  models.CharField(max_length=200, blank=True) 
