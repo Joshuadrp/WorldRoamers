@@ -34,11 +34,13 @@
                 <p class="card-text">
                     {{ post.content | safe }}
                 </p>
+                {% if post.author == user %}
                 <div class="text-center">
                     <a href="{% url 'edit_post' post_id=post.id %}">
                         <button type="button" class="btn btn-primary" style="width: 200px;">Edit</button>
                     </a>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
