@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.utils.text import slugify
 from django.views import generic
 from .models import Post, Comment
@@ -34,6 +35,7 @@ def post_detail(request, slug):
             comment.author = request.user
             comment.post = post
             comment.save()
+            messages.success(request, 'Comment created successfully!')
             return redirect('post_detail', slug=slug)
     else:
         form = CommentForm()
@@ -53,6 +55,7 @@ def edit_comment(request, comment_id):
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Comment edited successfully!')
             return redirect('post_detail', slug=comment.post.slug)
     else:
         form = CommentForm(instance=comment)
@@ -66,6 +69,7 @@ def delete_comment(request, comment_id):
 
     if request.method == 'POST':
         comment.delete()
+        messages.success(request, 'Comment deleted successfully!')
         return redirect('post_detail', slug=comment.post.slug)
     
     return render(request, 'blog/edit_comment.html', {'form': CommentForm(instance=comment), 'comment': comment})
@@ -78,6 +82,7 @@ def edit_post(request, post_id):
         form = PostEditForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Post updated successfully!')
             return redirect('post_detail', slug=post.slug)
     else:
         form = PostEditForm(instance=post)
@@ -93,11 +98,25 @@ def create_post(request):
             post.author = request.user
             post.slug = slugify(post.title)
             post.save()  
+            messages.success(request, 'Post created successfully!')
             return redirect('post_detail', slug=post.slug) 
     else:
         form = PostEditForm()
 
     return render(request, 'blog/create_post.html', {'form': form})
+
+
+@login_required
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id, author=request.user)
+
+    if request.method == 'POST':
+        post.delete()
+        messages.success(request, 'Post deleted successfully.')
+        return redirect('home')  
+    
+    return render(request, 'blog/delete_post.html', {'post': post})
+
 
 
 
