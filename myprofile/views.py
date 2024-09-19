@@ -1,7 +1,6 @@
 from django.views import generic
 from django.shortcuts import render, redirect
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.models import User
 from .models import MyProfile
 from .forms import ProfileForm
 
@@ -49,7 +48,7 @@ def delete_profile(request):
         return render(request, 'myprofile/delete_profile.html', {'profile': profile})
 
 def profile_detail(request, pk):
-    user_profile = get_object_or_404(User, pk=pk)
+    user_profile = get_object_or_404(MyProfile, user__pk=pk)
     return render(request, 'myprofile/profile_detail.html', {'user_profile': user_profile})
 
 
