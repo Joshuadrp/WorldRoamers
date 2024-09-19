@@ -29,9 +29,6 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
-            # Ensure uniqueness
-            while Post.objects.filter(slug=self.slug).exists():
-                self.slug = f"{slugify(self.title)}-{Post.objects.filter(title=self.title).count() + 1}"
         super().save(*args, **kwargs)
 
 class Comment(models.Model):

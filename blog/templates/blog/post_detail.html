@@ -79,6 +79,7 @@
 </div>
 
 <!-- Comment Form -->
+{% if user.is_authenticated %}
 <div class="row">
     <div class="col-md-8 card mb-4 mt-3">
         <div class="card-body">
@@ -91,5 +92,8 @@
         </div>
     </div>
 </div>
+{% else %}
+<h1 class="text-center">You need to create an account to leave a comment!</h1>
+{% endif %}
 
 {% endblock content %}
