@@ -1,6 +1,7 @@
 from django.views import generic
 from django.shortcuts import render, redirect
 from django.shortcuts import render, get_object_or_404
+from django.contrib import messages
 from .models import MyProfile
 from .forms import ProfileForm
 
@@ -14,7 +15,8 @@ def edit_profile(request):
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
-            return redirect('profile/edit')  # Redirect to the profile page after saving
+            messages.success(request, 'Profile edited successfully!')
+            return redirect('profile')  # Redirect to the profile page after saving
     else:
         form = ProfileForm(instance=profile)
     
@@ -31,6 +33,7 @@ def create_profile(request):
             form_instance = form.save(commit=False)
             form_instance.user = request.user  
             form_instance.save()  
+            messages.success(request, 'Profile created successfully!')
             return redirect('profile')  
     else:
         form = ProfileForm(instance=profile)  
@@ -43,6 +46,7 @@ def delete_profile(request):
 
     if request.method == 'POST':
         profile.delete()
+        messages.success(request, 'Profile deleted successfully!')
         return redirect('home')
     else:
         return render(request, 'myprofile/delete_profile.html', {'profile': profile})
