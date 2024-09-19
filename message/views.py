@@ -7,6 +7,7 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import Messages
 from .forms import MessageForm
 
@@ -25,12 +26,9 @@ def send_message(request):
 
 @login_required
 def inbox(request):
-    messages = Message.objects.filter(recipient=request.user)
+    messages = Messages.objects.filter(recipient=request.user).order_by('-sent_on')
     return render(request, 'message/inbox.html', {'messages': messages})
 
-@login_required
-def message_detail(request, message_id):
-    message = get_object_or_404(Message, id=message_id, recipient=request.user)
-    message.is_read = True  
-    message.save()
+def message_detail(request, pk):
+    message = get_object_or_404(Messages, pk=pk)
     return render(request, 'message/message_detail.html', {'message': message})
