@@ -3,23 +3,28 @@
 
 {% block content %}
 
-<div id="posts-container" class="image-flash row row-cols-1">
-  {% for post in object_list %}
-  <div>
-    {% if post.blog_img %}
-      <!-- If an image is uploaded, display the Cloudinary image -->
-      <img src="{{ post.blog_img.url }}" class="scale" alt="{{ post.title }}">
-    {% else %}
-      <!-- Display a default placeholder image if no image is uploaded -->
-      <img src="{% static 'images/test.jpeg' %}" class="scale" alt="Placeholder Image">
-    {% endif %}
+
+<div class="container-fluid">
+
+  <div class="card" style="width: 18.75rem;">
+    {% for post in object_list %}
+    <div>
+      {% if post.blog_img %}
+        <img src="{{ post.blog_img.url }}" class="card-img-top" alt="{{ post.title }}">
+      {% else %}
+        <img src="{% static 'images/test.jpeg' %}" class="card-img-top" alt="Placeholder Image">
+      {% endif %}
+    </div>
+    <div class="card-body">
+      <h4>
+        <a href="{% url 'post_detail' post.slug %}" class="card-title">{{ post.title }}</a> 
+      </h4>
+    </div>
+    
+    {% empty %}
+    <p>No posts available for this location.</p>
+    {% endfor %}
   </div>
-  <h4>
-    <a href="{% url 'post_detail' post.slug %}" class="post-link">{{ post.title }}</a> 
-  </h4>
-  {% empty %}
-  <p>No posts available for this location.</p>
-  {% endfor %}
 </div>
 
 {% endblock %}
