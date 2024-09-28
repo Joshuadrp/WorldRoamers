@@ -3,24 +3,23 @@
 
 {% block content %}
 
-
-<div class="container-fluid">
-
-  <div class="card" style="width: 18.75rem;">
+<div class="container my-5">
+  <div class="row">
     {% for post in object_list %}
-    <div>
-      {% if post.blog_img %}
-        <img src="{{ post.blog_img.url }}" class="card-img-top" alt="{{ post.title }}">
-      {% else %}
-        <img src="{% static 'images/test.jpeg' %}" class="card-img-top" alt="Placeholder Image">
-      {% endif %}
+    <div class="col-md-4 mb-4"> <!-- Each post takes up 4 columns in a 12-column grid -->
+      <div class="card h-100" style="width: 100%;"> <!-- 'h-100' ensures all cards are the same height -->
+        {% if post.blog_img %}
+          <img src="{{ post.blog_img.url }}" class="card-img-top" alt="{{ post.title }}">
+        {% else %}
+          <img src="{% static 'images/test.jpeg' %}" class="card-img-top" alt="Placeholder Image">
+        {% endif %}
+        <div class="card-body">
+          <h4 class="card-title">
+            <a href="{% url 'post_detail' post.slug %}" class="text-dark">{{ post.title }}</a> 
+          </h4>
+        </div>
+      </div>
     </div>
-    <div class="card-body">
-      <h4>
-        <a href="{% url 'post_detail' post.slug %}" class="card-title">{{ post.title }}</a> 
-      </h4>
-    </div>
-    
     {% empty %}
     <p>No posts available for this location.</p>
     {% endfor %}

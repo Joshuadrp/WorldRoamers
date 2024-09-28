@@ -1,16 +1,64 @@
-
-.footer {
-    background-color: aqua;
+/* Reset any unwanted margins or padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.made-by {
-    color: black;
+/* Navbar styles */
+.navbar {
+  background-color: #343a40; /* Dark background */
+  border-bottom: 2px solid white; /* White border */
 }
 
-.scale{
-    width: 40%;
+.navbar a {
+  color: black !important; /* Ensure navbar links are white */
 }
 
-img {
-    max-width: 30%;
+.navbar a:hover {
+  color: #ffc107 !important; /* Yellow hover for links */
 }
+
+/* Main content container */
+.container {
+  max-width: 1200px; /* Adjust the width as needed */
+  margin: auto;
+  padding: 20px;
+}
+
+/* Ensure cards are well spaced and aligned */
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  border: none;
+}
+
+.card img {
+  max-width: 100%; /* Ensure the image fits inside the card */
+  height: auto;
+}
+
+.card-body {
+  text-align: center;
+}
+
+h4 {
+  margin-top: 10px;
+  font-size: 1.5rem;
+}
+
+/* Ensure the footer stays at the bottom of the page */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto; /* Footer stays at the bottom */
+  padding: 10px;
+  background-color: #343a40;
+  color: white;
+  text-align: center;
+}
+
+
