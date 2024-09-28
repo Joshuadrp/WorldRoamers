@@ -152,17 +152,132 @@ footer {
   margin-bottom: 10px;
 }
 
-/* CTA Section */
-.cta-section {
-  background-color: #343a40;
+/* ---------------------- LOG IN CSS -------------------------- */
+
+.container-login {
+  max-width: 600px; 
+  margin: 50px auto; 
+  padding: 20px;
+  background-color: #fff; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
 }
 
-.cta-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+.login {
+  display: flex;
+  flex-direction: column;
 }
 
-.cta-section .btn {
-  font-size: 1.2rem;
-  border: 2px solid white;
+input[type="text"],
+input[type="password"] {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 16px;
 }
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.btn-signup {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px;
+}
+
+.btn-signup:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 576px) {
+  .container {
+      padding: 15px;
+  }
+
+  h3 {
+      font-size: 1.5rem;
+  }
+
+  .btn-signup {
+      font-size: 14px;
+  }
+}
+
+/*----------------- SIGN UP CSS --------------- */
+
+.container-signup {
+  max-width: 600px; 
+  margin: 50px auto; 
+  padding: 20px;
+  background-color: #fff; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.signup {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input Field Styles */
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 16px;
+}
+
+/* Input Focus Styles */
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Signup Button Styles */
+.btn-signup {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px;
+}
+
+/* Signup Button Hover Styles */
+.btn-signup:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Styles */
+@media (max-width: 576px) {
+  .container {
+      padding: 15px;
+  }
+
+  h3 {
+      font-size: 1.5rem;
+  }
+
+  .btn-signup {
+      font-size: 14px;
+  }
+}
+
