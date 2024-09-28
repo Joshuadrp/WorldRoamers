@@ -152,9 +152,8 @@ footer {
   margin-bottom: 10px;
 }
 
-/* ---------------------- LOG IN CSS -------------------------- */
-
-.container-login {
+/* For all-auth templates */
+.container-auth {
   max-width: 600px; 
   margin: 50px auto; 
   padding: 20px;
@@ -162,6 +161,24 @@ footer {
   border-radius: 8px; 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
 }
+
+@media (max-width: 576px) {
+  .container-auth {
+    max-width: 100%;
+    margin: 0; 
+    border-radius: 0; 
+    box-shadow: none; 
+    padding: 20px; 
+    height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center; 
+  }
+}
+
+
+/* ---------------------- LOG IN CSS -------------------------- */
 
 .login {
   display: flex;
@@ -215,14 +232,6 @@ input[type="password"]:focus {
 
 /*----------------- SIGN UP CSS --------------- */
 
-.container-signup {
-  max-width: 600px; 
-  margin: 50px auto; 
-  padding: 20px;
-  background-color: #fff; 
-  border-radius: 8px; 
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
-}
 
 .signup {
   display: flex;
@@ -280,4 +289,5 @@ input[type="email"]:focus {
       font-size: 14px;
   }
 }
+
 
