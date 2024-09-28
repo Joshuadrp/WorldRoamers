@@ -7,8 +7,8 @@
 
 /* Navbar styles */
 .navbar {
-  background-color: #343a40; 
-  border-bottom: 2px solid white;
+  background-color: ghostwhite ;
+  border-bottom: 2px solid grey;
 }
 
 .navbar a {
@@ -26,6 +26,7 @@
 .navbar-toggler-icon {
   background-color: white;
 }
+
 
 /* Main content container */
 .container {
@@ -277,7 +278,7 @@ input[type="email"]:focus {
 
 /* Responsive Styles */
 @media (max-width: 576px) {
-  .container {
+  .container-auth {
       padding: 15px;
   }
 
@@ -290,4 +291,128 @@ input[type="email"]:focus {
   }
 }
 
+/* --------- My profile styles --------- */
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
 
+.profile-header {
+  background-color: #ffffff;
+  padding: 30px;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px 0;
+}
+
+.profile-bio, .profile-name, .profile-interests, .profile-nationality {
+  margin: 10px 0;
+}
+
+.profile-pic {
+  max-width: 250px;
+  width: 100%;
+  border-radius: 10px;
+  border: 4px solid #007bff; 
+  margin: 20px 0;
+}
+
+.no-profile {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.no-profile h2 {
+  color: #6c757d;
+  margin-bottom: 20px;
+}
+
+/* -------Create profile styles -------------- */
+.create-profile-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+/*----------- Form Styles for Profile --------- */
+.form-container {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 10px;
+  width: 100%;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* ----------- Edit profile style ------ */
+.edit-profile-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.save-editbtn[type="submit"] {
+  padding: 10px 20px; 
+  font-size: 16px;
+  background-color: #007bff;
+  color: white; 
+  border: none; 
+  border-radius: 4px; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3; 
+}
+
+.btn-danger {
+  margin-top: 10px; 
+  background-color: #dc3545; 
+  color: white; 
+  border: none; 
+  border-radius: 4px; 
+}
+
+.btn-danger:hover {
+  background-color: #c82333; 
+}
+
+/* Delete Profile Page */
+
+.delete-profile-page {
+  padding: 20px;
+  max-width: 500px;
+  margin: auto;
+}

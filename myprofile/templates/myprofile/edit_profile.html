@@ -2,11 +2,12 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="edit-profile-page">
+    <h1 class="text-center">Edit Your Profile</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Save changes</button>
+        <button type="submit" class="save-editbtn">Save Changes</button>
     </form>
     <a class="btn btn-danger" href="{% url 'delete_profile' %}">Delete Profile</a>
 </div>

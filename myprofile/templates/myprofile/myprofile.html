@@ -2,53 +2,25 @@
 {% load static %}
 
 {% block content %}
-
-<!-- index.html content starts here -->
-<div class="container-fluid">
-    <div class="row">
-
-        <!-- Blog Entries Column -->
-        <div class="col-12 mt-3 left">
-            <div class="row">
-
-                {% if user.is_authenticated %}
-
-                    {% if user.myprofile.name %}
-                    <div class="text-center">   
-                        <h1>{{ user.myprofile.bio }}</h1>
-                        <h1>{{ user.myprofile.name }} {{ user.myprofile.surname }}</h1>
-
-                        {% if user.myprofile.profile_pic %}
-                        <!-- Display Cloudinary Image -->
-                        <img src="{{ user.myprofile.profile_pic.url }}" alt="{{ user.username }}">
-                        {% else %}
-                        <!-- Display Placeholder Image -->
-                        <img src="{% static 'images/test.jpeg' %}" alt="placeholder image">
-                        {% endif %}
-                        
-                        <h1>{{ user.myprofile.interests }}</h1>
-                        <h1>{{ user.myprofile.nationality }}</h1>
-                        <div class="text-center">
-                            <a href="{% url 'edit_profile' %}">
-                                <button type="button" class="btn btn-primary" style="width: 200px;">Edit Profile</button>
-                            </a>
-                        </div>
-                        
-                    </div>
-                    {% else %}
-                    <h1 class="text-center">This user has no profile, but you can create one. Just click this button!!</h1>
-                    <div class="text-center">
-                        <a href="{% url 'create_profile' %}">
-                            <button type="button" class="btn btn-primary" style="width: 200px;">Create Profile</button>
-                        </a>
-                    </div>
-                    {% endif %}
-
-                {% endif %}
+<div class="profile-page">
+    <div class="profile-header text-center">
+        {% if user.myprofile.name %} 
+            <h1 class="profile-bio">{{ user.myprofile.bio }}</h1>
+            <h1 class="profile-name">{{ user.myprofile.name }} {{ user.myprofile.surname }}</h1>
+            <img src="{{ user.myprofile.profile_pic.url }}" alt="{{ user.username }}" class="profile-pic">
+            <h2 class="profile-interests">{{ user.myprofile.interests }}</h2>
+            <h2 class="profile-nationality">{{ user.myprofile.nationality }}</h2>
+            <div class="btn-container">
+                <a href="{% url 'edit_profile' %}">
+                    <button type="button" class="btn btn-primary">Edit Profile</button>
+                </a>
             </div>
-        </div>
+        {% else %}
+            <h2 class="no-profile">This user has no profile, but you can create one. Just click this button!</h2>
+            <a href="{% url 'create_profile' %}">
+                <button type="button" class="btn btn-primary">Create Profile</button>
+            </a>
+        {% endif %}
     </div>
 </div>
-
-<!-- index.html content ends here -->
 {% endblock %}
