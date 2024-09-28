@@ -416,3 +416,27 @@ button[type="submit"]:hover {
   max-width: 500px;
   margin: auto;
 }
+
+/* ------------------ About Us styles ---------- */
+
+.about-page {
+  padding: 40px 15px;
+  background-color: #f8f9fa;
+}
+
+.about-page h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.about-page h2 {
+  font-size: 2rem;
+  margin-top: 20px;
+}
+
+.about-page p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-top: 10px;
+  color: #555;
+}
