@@ -1,99 +1,69 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block content %}
 {% load static %}
 
-<div class="masthead">
-    <div class="container">
-        <div class="row g-0">
-            <div class="col-md-6 masthead-text">
-                <!-- Post title goes in these h1 tags -->
-                <h1 class="post-title">{{ post.title }}</h1>
-                <!-- Post author goes before the | the post's created date goes after -->
-                <p class="post-subtitle"> <a href="{% url 'profile_detail' post.author.pk  %}">{{ post.author }}</a> | {{ post.created_on }}</p>
-            </div>
-
-            <!-- Display the Post Image -->
-            <div class="col-md-6 masthead-image">
-                {% if post.blog_img %}
-                    <!-- If an image is uploaded, display the Cloudinary image -->
-                    <img src="{{ post.blog_img.url }}" class="scale" alt="{{ post.title }}">
-                {% else %}
-                    <!-- Display a default placeholder image if no image is uploaded -->
-                    <img src="{% static 'images/test.jpeg' %}" class="scale" alt="Placeholder Image">
-                {% endif %}
-            </div>
-        </div>
+<!-- Hero Section -->
+<section class="post-hero" >
+    <div class="hero-content">
+        <h1 class="post-title">{{ post.title }}</h1>
+        <p class="post-subtitle">
+            <a href="{% url 'profile_detail' post.author.pk  %}">{{ post.author }}</a> | {{ post.created_on }}
+        </p>
     </div>
-</div>
+</section>
 
-<div class="container">
-    <div class="row">
-        <div class="col card mb-4 mt-3 left top">
-            <div class="card-body">
-                <!-- The post content goes inside the card-text. -->
-                <!-- Use the | safe filter inside the template tags -->
-                <p class="card-text">
-                    {{ post.content | safe }}
+<!-- Post Content -->
+<section class="post-content container-post-content">
+    <article class="content-body">
+        <p>
+            {{ post.content | safe }}
+        </p>
+        {% if post.author == user %}
+        <div class="edit-btn">
+            <a href="{% url 'edit_post' post_id=post.id %}" class="btn btn-primary">Edit Post</a>
+        </div>
+        {% endif %}
+    </article>
+</section>
+
+<!-- Comments Section -->
+<section class="comments-section container">
+    <h3>Comments:</h3>
+    <div class="comments-list">
+        <div class="comments-container"> <!-- Added this div to contain all comments -->
+            {% for comment in comments %}
+            <div class="comment">
+                <p>
+                    <strong>{{ comment.author }}</strong> <span>{{ comment.created_on }}</span>
                 </p>
-                {% if post.author == user %}
-                <div class="text-center">
-                    <a href="{% url 'edit_post' post_id=post.id %}">
-                        <button type="button" class="btn btn-primary" style="width: 200px;">Edit</button>
-                    </a>
+                <div class="comment-body">
+                    <p>{{ comment.content | linebreaks }}</p>
+                </div>
+                {% if comment.author == user %}
+                <div class="comment-edit">
+                    <a href="{% url 'edit_comment' comment_id=comment.id %}" class="btn btn-secondary">Edit Comment</a>
                 </div>
                 {% endif %}
             </div>
+            {% empty %}
+            <p>No comments yet. Be the first to comment!</p>
+            {% endfor %}
         </div>
     </div>
-
-    <!-- Displaying Comments -->
-    <div class="row">
-        <div class="col-md-8 card mb-4  mt-3 ">
-            <h3>Comments:</h3>
-            <div class="card-body">
-                <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
-                {% for comment in comments %}
-                <div class="p-2 comments{% if not comment.author == user %} {% endif %}">
-                    <p class="font-weight-bold">
-                        {{ comment.author }}
-                        <span class="font-weight-normal">
-                            {{ comment.created_on }}
-                        </span> wrote:
-                    </p>
-                    <div id="comment{{ comment.id }}">
-                        {{ comment.content | linebreaks }}
-                    </div>
-                    {% if comment.author == user %}
-                    <div class="text-center">
-                        <a href="{% url 'edit_comment' comment_id=comment.id %}">
-                            <button type="button" class="btn btn-primary" style="width: 200px;">Edit</button>
-                        </a>
-                    </div>
-                    {% endif %}
-                </div>
-                {% empty %}
-                <h4>No comments here yet! You want to be the first one?!</h4>
-                <!-- Our for loop ends here -->
-                {% endfor %}
-            </div>
-        </div>
-</div>
+</section>
 
 <!-- Comment Form -->
 {% if user.is_authenticated %}
-<div class="row">
-    <div class="col-md-8 card mb-4 mt-3">
-        <div class="card-body">
-            <h4>Leave a Comment:</h4>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">Post Comment</button>
-            </form>
-        </div>
-    </div>
-</div>
+<section class="comment-form container">
+    <h4>Leave a Comment</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Post Comment</button>
+    </form>
+</section>
 {% else %}
-<h1 class="text-center">You need to create an account to leave a comment!</h1>
+<p class="text-center">You need to create an account to leave a comment!</p>
 {% endif %}
 
 {% endblock content %}
