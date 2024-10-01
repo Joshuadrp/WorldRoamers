@@ -1,16 +1,8 @@
-# from django.shortcuts import render
-# from django.views import generic
-
-# # Create your views here.
-# class Chat(generic.TemplateView):
-#     template_name = "message/chat.html"
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-# from django.contrib import messages
 from .models import Messages
 from .forms import MessageForm
-from django.db.models import Q
+from django.db.models import Q, Max
 from django import forms
 
 @login_required
@@ -28,8 +20,21 @@ def send_message(request):
 
 @login_required
 def inbox(request):
-    messages = Messages.objects.filter(recipient=request.user).order_by('-sent_on')
-    return render(request, 'message/inbox.html', {'messages': messages})
+    messages = Messages.objects.filter(recipient=request.user)  # Get messages for the logged-in user
+
+    latest_messages = messages.values('sender').annotate(latest_message=Max('sent_on')).order_by('-latest_message')
+
+    # Prepare a list to hold the latest message objects
+    latest_message_objects = []
+    for msg in latest_messages:
+        latest_message = messages.filter(sender=msg['sender']).order_by('-sent_on').first()
+        latest_message_objects.append(latest_message)
+
+    context = {
+        'messages': latest_message_objects,
+    }
+    return render(request, 'message/inbox.html', context)
+
 
 @login_required
 def message_detail(request, message_id):

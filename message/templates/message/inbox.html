@@ -8,11 +8,13 @@
         {% for message in messages %}
         <a href="{% url 'message_detail' message.id %}" class="list-group-item list-group-item-action inbox-item">
             <div class="inbox-item-content d-flex align-items-center">
-                <img src="{{ message.sender.profile_picture.url }}" alt="{{ message.sender.username }}'s profile picture" class="inbox-profile-pic"> <!-- Adjust the profile picture field as necessary -->
-                <h5 class="mb-1 inbox-sender">{{ message.sender.username }}</h5> <!-- Display sender's username or name -->
+                <img src="{{message.sender.myprofile.profile_pic.url}}" alt="{{ message.sender.username }}'s profile picture" class="inbox-profile-pic">
+                <div class="inbox-text-content">
+                    <h5 class="mb-1 inbox-sender">{{ message.sender.username }}</h5>
+                    <p class="mb-1 inbox-content">{{ message.content|slice:":100" }}...</p>
+                </div>
             </div>
-            <p class="mb-1 inbox-content">{{ message.content|slice:":100" }}...</p>
-            <small class="inbox-date">{{ message.sent_on }}</small>
+            <small class="inbox-date">{{ message.sent_on|date:"Y-m-d H:i" }}</small>
         </a>
         {% empty %}
         <p class="no-messages">No messages found.</p>
