@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Messages
-from .forms import MessageForm
+from .forms import MessageForm, ReplyForm
 from django.db.models import Q, Max
 from django import forms
 
@@ -45,7 +45,7 @@ def message_detail(request, message_id):
     ).order_by('sent_on')
     
     if request.method == 'POST':
-        reply_form = MessageForm(request.POST)
+        reply_form = ReplyForm(request.POST)
         if reply_form.is_valid():
             reply = reply_form.save(commit=False)
             reply.sender = request.user
@@ -54,10 +54,7 @@ def message_detail(request, message_id):
             reply.save()
             return redirect('message_detail', message_id=original_message.id) 
     else:
-        reply_form = MessageForm()
-
-    
-    reply_form.fields['recipient'].widget = forms.HiddenInput()
+        reply_form = ReplyForm()
 
     context = {
         'message': original_message,

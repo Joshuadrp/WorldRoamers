@@ -9,6 +9,11 @@
         <p class="post-subtitle">
             <a href="{% url 'profile_detail' post.author.pk  %}">{{ post.author }}</a> | {{ post.created_on }}
         </p>
+        {% if user.is_authenticated %}
+        <div class='btn btn-primary'>
+            <a href="" class="btn btn-primary">Send Message</a>
+        </div>
+        {% endif %}
     </div>
 </section>
 
