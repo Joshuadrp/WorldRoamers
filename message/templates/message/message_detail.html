@@ -2,22 +2,37 @@
 {% load static %}
 
 {% block content %}
+<div class="container message-detail-container">
+    
+    <h1 class="message-detail-title">
+        Chat with 
+        {% if message.sender != user %}
+            {{ message.sender }}
+        {% else %}
+            {{ message.recipient }}
+        {% endif %}
+    </h1>
+    
+    <!-- Chat Window -->
+    <div class="chat-window">
+        {% for chat_message in chat_messages %}
+        <div class="chat-message {% if chat_message.sender == user %}message-outgoing{% else %}message-incoming{% endif %}">
+            <div class="chat-bubble">
+                <p class="chat-sender">{{ chat_message.sender }}</p>
+                <p class="chat-content">{{ chat_message.content }}</p>
+                <small class="chat-timestamp">{{ chat_message.sent_on }}</small>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 
-<div class="container">
-    <h1>Message Detail</h1>
-    <div class="card">
-        <div class="card-header">
-            <h5>{{ message.sender }}</h5>
-            <small>Date: {{ message.sent_on }}</small>
-        </div>
-        <div class="card-body">
-            <p>{{ message.content }}</p>
-        </div>
-        <div class="card-footer">
-            <a href="{% url 'inbox' %}" class="btn btn-secondary">Back to Inbox</a>
-        </div>
+    <!-- Reply Form Section -->
+    <div class="reply-section">
+        <form method="POST">
+            {% csrf_token %}
+            {{ reply_form.as_p }}
+            <button type="submit" class="btn btn-primary">Send Reply</button>
+        </form>
     </div>
 </div>
-
-
 {% endblock %}

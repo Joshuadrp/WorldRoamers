@@ -627,3 +627,144 @@ h3 {
   outline: none;
 }
 
+/* MESSAGES SECTION STYLES!! */
+
+/* INBOX */
+.inbox-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.inbox-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.list-group-item {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.inbox-item:hover {
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.inbox-sender {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #007bff;
+}
+
+.inbox-content {
+  margin: 10px 0;
+  color: #6c757d;
+  line-height: 1.5;
+}
+
+.inbox-date {
+  font-size: 0.85rem;
+  color: #868e96;
+}
+
+.no-messages {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #6c757d;
+  margin: 20px 0;
+}
+
+.send-message-btn {
+  display: block;
+  width: 150px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+/* MESSAGE DETAIL */
+.message-detail-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.message-detail-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.chat-window {
+  max-height: 500px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+}
+
+.chat-message {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.message-incoming {
+  justify-content: flex-start;
+}
+
+.message-outgoing {
+  justify-content: flex-end;
+}
+
+.chat-bubble {
+  max-width: 70%;
+  padding: 10px 15px;
+  border-radius: 20px;
+  background-color: #f1f1f1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.message-outgoing .chat-bubble {
+  background-color: #007bff;
+  color: white;
+}
+
+.chat-sender {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.chat-content {
+  margin-bottom: 5px;
+  word-wrap: break-word;
+}
+
+.chat-timestamp {
+  font-size: 0.75rem;
+  color: #6c757d;
+}
+
+.reply-section {
+  margin-top: 20px;
+}
+
+.reply-section form {
+  display: flex;
+  flex-direction: column;
+}
+
+.reply-section button {
+  width: 150px;
+  margin-top: 10px;
+  align-self: flex-start;
+}

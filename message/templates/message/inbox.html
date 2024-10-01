@@ -2,23 +2,22 @@
 {% load static %}
 
 {% block content %}
-
-<div class="container">
-    <h1>Inbox</h1>
+<div class="container inbox-container">
+    <h1 class="inbox-title">Inbox</h1>
     <div class="list-group">
         {% for message in messages %}
-        <a href="{% url 'message_detail' message.id %}" class="list-group-item list-group-item-action">
-            <h5 class="mb-1">{{ message.sender }}</h5>
-            <p class="mb-1">{{ message.content|slice:":100" }}...</p>
-            <small>{{ message.sent_on }}</small>
+        <a href="{% url 'message_detail' message.id %}" class="list-group-item list-group-item-action inbox-item">
+            <div class="inbox-item-content d-flex align-items-center">
+                <img src="{{ message.sender.profile_picture.url }}" alt="{{ message.sender.username }}'s profile picture" class="inbox-profile-pic"> <!-- Adjust the profile picture field as necessary -->
+                <h5 class="mb-1 inbox-sender">{{ message.sender.username }}</h5> <!-- Display sender's username or name -->
+            </div>
+            <p class="mb-1 inbox-content">{{ message.content|slice:":100" }}...</p>
+            <small class="inbox-date">{{ message.sent_on }}</small>
         </a>
         {% empty %}
-        <p>No messages found.</p>
+        <p class="no-messages">No messages found.</p>
         {% endfor %}
-        <a class="btn btn-primary" aria-current="page"
-            href="{% url 'send_message' %}">Send Message</a>
+        <a class="btn btn-primary send-message-btn" aria-current="page" href="{% url 'send_message' %}">Send Message</a>
     </div>
 </div>
-
-
 {% endblock %}
