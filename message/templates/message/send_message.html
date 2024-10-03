@@ -3,15 +3,13 @@
 
 {% block content %}
 <div class="container message-form-container">
-    <h3 class="form-title">Send a Message</h3>
+    <h3 class="form-title">Send a Message to {{ recipient.username }}</h3> 
     <div class="card">
         <div class="card-body">
             <form method="post" class="message-form">
                 {% csrf_token %}
-                <div class="form-group">
-                    <label for="id_recipient">Recipient:</label>
-                    {{ form.recipient }}
-                </div>
+                <input type="hidden" name="recipient" value="{{ recipient.id }}">
+
                 <div class="form-group">
                     <label for="id_content">Message:</label>
                     {{ form.content }}

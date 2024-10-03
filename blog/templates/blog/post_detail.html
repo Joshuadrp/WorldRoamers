@@ -9,11 +9,18 @@
         <p class="post-subtitle">
             <a href="{% url 'profile_detail' post.author.pk  %}">{{ post.author }}</a> | {{ post.created_on }}
         </p>
+
         {% if user.is_authenticated %}
-        <div class='btn btn-primary'>
-            <a href="" class="btn btn-primary">Send Message</a>
-        </div>
+            {% if post.author != user %}
+                <!-- Show the button only if the logged-in user is NOT the author -->
+                <div class="btn-container">
+                    <a href="{% url 'send_message' post.author.pk %}" class="btn btn-primary">
+                        Send Message to {{ post.author }}
+                    </a>
+                </div>
+            {% endif %}
         {% endif %}
+       
     </div>
 </section>
 
@@ -35,7 +42,7 @@
 <section class="comments-section container">
     <h3>Comments:</h3>
     <div class="comments-list">
-        <div class="comments-container"> <!-- Added this div to contain all comments -->
+        <div class="comments-container"> 
             {% for comment in comments %}
             <div class="comment">
                 <p>
