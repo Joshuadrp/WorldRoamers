@@ -8,7 +8,12 @@
     <div class="container">
         <h1 class="display-4">Welcome to WorldRoamers</h1>
         <p class="lead">Connect with fellow travelers and explore the world together.</p>
+        {% if user.is_authenticated %}
+        {% else %}
         <a href="{% url 'account_signup' %}" class="btn btn-lg btn-primary mt-4">Join Us</a>
+        {% endif %}
+
+        
     </div>
 </section>
 

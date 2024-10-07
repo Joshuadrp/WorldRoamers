@@ -84,18 +84,62 @@ h4 {
 }
 
 /* Footer */
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.footer {
+  background-color: #222; /* Dark background color */
+  color: #f8f9fa; /* Light text color */
+  padding: 20px 0;
 }
 
-footer {
-  margin-top: auto;
-  padding: 10px;
-  background-color: #343a40;
-  color: white;
-  text-align: center;
+.footer h5 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.footer p {
+  font-size: 14px;
+}
+
+.footer ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+}
+
+.footer ul li a {
+  color: #f8f9fa;
+  text-decoration: none;
+}
+
+.footer ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer .list-inline {
+  padding-left: 0;
+}
+
+.footer .list-inline-item {
+  margin-right: 10px;
+}
+
+.footer .list-inline-item a {
+  color: #f8f9fa;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.footer .list-inline-item a:hover {
+  color: #007bff; /* Add a blue highlight when hovered */
+}
+
+/* Adjust the spacing for small screens */
+@media (max-width: 576px) {
+  .footer .col-md-4 {
+      margin-bottom: 20px;
+  }
 }
 
 /* ----------- HOME CSS--------------- */
