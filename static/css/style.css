@@ -102,6 +102,8 @@ footer {
 /* Hero Section */
 .hero-section {
   background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
+  background-image: url("/static/images/hero.jpg");
+  background-position: center;
   color: white;
   text-align: center;
   height: 80vh;

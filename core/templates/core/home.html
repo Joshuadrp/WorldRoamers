@@ -16,11 +16,25 @@
 <section class="explore-section py-5">
     <div class="container text-center">
         <h2 class="mb-4">Explore by Location</h2>
+
         <div class="row justify-content-center">
             {% for location in location_list %}
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow">
-                    <img src="{% static 'images/location-placeholder.jpg' %}" class="card-img-top" alt="{{ location.name }}">
+                    <!-- Conditional logic for location image -->
+                    {% if location.name == "Europe" %}
+                    <img src="{% static 'images/europe.jpg' %}" class="card-img-top" alt="{{ location.name }}">
+                    {% elif location.name == "Asia" %}
+                    <img src="{% static 'images/asia.jpg' %}" class="card-img-top" alt="{{ location.name }}">
+                    {% elif location.name == "Africa" %}
+                    <img src="{% static 'images/africa.jpg' %}" class="card-img-top" alt="{{ location.name }}">
+                    {% elif location.name == "America" %}
+                    <img src="{% static 'images/america.jpg' %}" class="card-img-top" alt="{{ location.name }}">
+                    {% elif location.name == "Oceania" %}
+                    <img src="{% static 'images/oceania.jpg' %}" class="card-img-top" alt="{{ location.name }}">
+                    {% else %}
+                    <img src="{% static 'images/test.jpeg' %}" class="card-img-top" alt="{{ location.name }}">
+                    {% endif %}
                     <div class="card-body">
                         <h3 class="card-title">{{ location.name }}</h3>
                         <a href="{% url 'posts_by_location' location_slug=location.slug %}" class="btn btn-outline-primary">Explore</a>
