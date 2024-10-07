@@ -24,11 +24,15 @@
 }
 
 /* Main content container */
-.container {
-  max-width: 1200px; 
+.base-container{
+  max-width: 1200px;
   margin: auto;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
+
 
 /* Cards for post previews */
 .card {
