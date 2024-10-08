@@ -5,6 +5,17 @@
   box-sizing: border-box;
 }
 
+/* Main content container */
+.base-container{
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
 /* Navbar styles */
 .navbar {
   background-color: ghostwhite ;
@@ -21,16 +32,6 @@
 /* Navbar toggler button styles */
 .navbar-toggler {
   border-color: rgba(255, 255, 255, 0.5); 
-}
-
-/* Main content container */
-.base-container{
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
 
 
@@ -136,10 +137,9 @@ h4 {
 }
 
 .footer .list-inline-item a:hover {
-  color: #007bff; /* Add a blue highlight when hovered */
+  color: #007bff; 
 }
 
-/* Adjust the spacing for small screens */
 @media (max-width: 576px) {
   .footer .col-md-4 {
       margin-bottom: 20px;

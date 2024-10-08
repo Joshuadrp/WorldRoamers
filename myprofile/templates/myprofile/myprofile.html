@@ -4,22 +4,33 @@
 {% block content %}
 <div class="profile-page">
     <div class="profile-header text-center">
-        {% if user.myprofile.name %} 
-            <h1 class="profile-bio">{{ user.myprofile.bio }}</h1>
-            <h1 class="profile-name">{{ user.myprofile.name }} {{ user.myprofile.surname }}</h1>
-            <img src="{{ user.myprofile.profile_pic.url }}" alt="{{ user.username }}" class="profile-pic">
-            <h2 class="profile-interests">{{ user.myprofile.interests }}</h2>
-            <h2 class="profile-nationality">{{ user.myprofile.nationality }}</h2>
-            <div class="btn-container">
+        {% if user.myprofile.name %}
+            <div class="profile-info">
+                <div class="profile-pic-container">
+                    <img src="{{ user.myprofile.profile_pic.url }}" alt="{{ user.username }}" class="profile-pic">
+                </div>
+                <div class="profile-details">
+                    <h1 class="profile-name">{{ user.myprofile.name }} {{ user.myprofile.surname }}</h1>
+                    <p class="profile-bio">{{ user.myprofile.bio }}</p>
+                    <div class="profile-extra">
+                        <p class="profile-interests"><strong>Interests:</strong> {{ user.myprofile.interests }}</p>
+                        <p class="profile-nationality"><strong>Nationality:</strong> {{ user.myprofile.nationality }}</p>
+                        <p class="profile-countries"><strong>Countries Visited:</strong> {{ user.myprofile.countries_visited }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-container text-center">
                 <a href="{% url 'edit_profile' %}">
                     <button type="button" class="btn btn-primary">Edit Profile</button>
                 </a>
             </div>
         {% else %}
-            <h2 class="no-profile">This user has no profile, but you can create one. Just click this button!</h2>
-            <a href="{% url 'create_profile' %}">
-                <button type="button" class="btn btn-primary">Create Profile</button>
-            </a>
+            <div class="no-profile text-center">
+                <h2>This user has no profile yet, but you can create one!</h2>
+                <a href="{% url 'create_profile' %}">
+                    <button type="button" class="btn btn-primary">Create Profile</button>
+                </a>
+            </div>
         {% endif %}
     </div>
 </div>
