@@ -53,7 +53,7 @@ def delete_profile(request):
 
 def profile_detail(request, pk):
     user_profile = get_object_or_404(MyProfile, user__pk=pk)
-    return render(request, 'myprofile/profile_detail.html', {'user_profile': user_profile})
+    return render(request, 'myprofile/myprofile.html', {'user_profile': user_profile})
 
 
 
